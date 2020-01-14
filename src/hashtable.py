@@ -51,7 +51,8 @@ class HashTable:
 
         Fill this in.
         '''
-        pass
+        hash_index = _hash_mod(key)
+        self.storage[hash_index] = value
 
 
 

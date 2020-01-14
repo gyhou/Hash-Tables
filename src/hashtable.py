@@ -78,14 +78,16 @@ class HashTable:
         '''
         index = self._hash_mod(key)
         current = self.storage[index]
+
+        if key == current.key:
+            self.storage[index] = self.storage[index].next
         
-        while current:
-            current = self.storage[index]
-            if key == current.key:
-                self.storage[index] = self.storage[index].next
+        while current.next:
+            if key == current.next.key:
+                current.next = current.next.next
                 return
             else:
-                self.storage[index] = self.storage[index].next
+                current = current.next
 
 
     def retrieve(self, key):
@@ -169,3 +171,14 @@ if __name__ == "__main__":
     print(ht.retrieve("line_1"))
     print(ht.retrieve("line_2"))
     print(ht.retrieve("line_3"))
+
+    print(hash("key-9") % 8)
+    print(hash("key-8") % 8)
+    print(hash("key-7") % 8)
+    print(hash("key-6") % 8)
+    print(hash("key-5") % 8)
+    print(hash("key-4") % 8)
+    print(hash("key-3") % 8)
+    print(hash("key-2") % 8)
+    print(hash("key-1") % 8)
+    print(hash("key-0") % 8)

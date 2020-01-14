@@ -77,15 +77,15 @@ class HashTable:
         Fill this in.
         '''
         index = self._hash_mod(key)
-
-        while self.storage[index]:
-            if key == self.storage[index].key:
+        current = self.storage[index]
+        
+        while current:
+            current = self.storage[index]
+            if key == current.key:
                 self.storage[index] = self.storage[index].next
                 return
             else:
                 self.storage[index] = self.storage[index].next
-
-        print("Warning: Key not found!")
 
 
     def retrieve(self, key):
@@ -152,4 +152,20 @@ if __name__ == "__main__":
     print(ht.retrieve("line_2"))
     print(ht.retrieve("line_3"))
 
-    print("")
+    print("\nRemove line_1")
+    ht.remove("line_1")
+    print(ht.retrieve("line_1"))
+    print(ht.retrieve("line_2"))
+    print(ht.retrieve("line_3"))
+
+    print("\nRemove line_1 and line_2")
+    ht.remove("line_2")
+    print(ht.retrieve("line_1"))
+    print(ht.retrieve("line_2"))
+    print(ht.retrieve("line_3"))
+
+    print("\nRemove line_1 and line_2 and line_3")
+    ht.remove("line_3")
+    print(ht.retrieve("line_1"))
+    print(ht.retrieve("line_2"))
+    print(ht.retrieve("line_3"))
